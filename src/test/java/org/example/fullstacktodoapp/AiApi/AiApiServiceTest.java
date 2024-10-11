@@ -27,17 +27,17 @@ class AiApiServiceTest {
     // what does this test add? it doesn't intercept any outside call
     @Test
     void spellcheckTodo() throws Exception {
-        given(aiService.spellcheckTodo("descrizzy"))
-                .willReturn("descrizzy");
+        given(aiService.spellcheckTodo("description"))
+                .willReturn("description");
         mockMvc.perform(post("/api/todo").contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                                                 {
-                                                                    "description": "descrizzy",
+                                                                    "description": "description",
                                                                     "status": "open"
                                                                 }
                                 """))
                 .andExpect(status().isOk())
-        .andExpect(content().string("descrizzy"));
+        .andExpect(content().string("description"));
     }
 
 }

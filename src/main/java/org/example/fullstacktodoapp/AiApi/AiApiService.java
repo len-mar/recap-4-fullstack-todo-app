@@ -4,15 +4,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-
 import java.util.List;
 
 @Service
 public class AiApiService {
     private final RestClient restClient;
-// todo: why does maven build fail when triggered manually,
-//  but running the full application is completely fine?
-//  the error given is "cannot resolve authkey"
+// todo: why does maven build fail when triggered manually, but running the full application is completely fine?
     public AiApiService(@Value("${AUTH_KEY}") String key){
             this.restClient = RestClient.builder()
                     .defaultHeader("Authorization", "Bearer " + key)
@@ -25,7 +22,7 @@ public class AiApiService {
         OpenAIRequest request = new OpenAIRequest("gpt-4o-mini",
                 List.of(new OpenAiMessage(
                         "user",
-                        "if misspelled, replace this with the correct spelling or just give it back unchanged if spelled correctly" + todo)),
+                        "if misspelled, replace this with the correct spelling or just give it back unchanged if spelled correctly, never any more words or sentences" + todo)),
                 0.2
         );
 
